@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <style>
+    /* Your existing styling */
+  </style>
+  <script src="https://www.googleapis.com/identitytoolkit/v3/recaptcha/v3.l.js"></script> (Optional for reCAPTCHA)
+  <script src="https://www.firebase.com/__/firebase/9.11.2/firebase-app.js"></script>
+  <script src="https://www.firebase.com/__/firebase/9.11.2/firebase-database.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Contact Us</h1>
+    <form id="contactForm">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your name.." required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your email.." required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Write something.." required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    // Replace these placeholders with your actual Firebase app configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyChYZonbAo_mHJiIEB3UnBniq1-VdIiQJk",
+  authDomain: "contact-test1.firebaseapp.com",
+  databaseURL: "https://contact-test1-default-rtdb.firebaseio.com",
+  projectId: "contact-test1",
+  storageBucket: "contact-test1.appspot.com",
+  messagingSenderId: "742584109654",
+  appId: "1:742584109654:web:19271a62231595b48349f7"
+};
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // Event listener for form submission
+    const form = document.getElementById("contactForm");
+    form.addEventListener("submit", handleSubmit);
+
+    function handleSubmit(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      saveMessages(name, email, message);
+    }
+
+    function saveMessages(name, email, message) {
+      database.ref("messages").push({
+        name: name,
+        email: email,
+        message: message
+      })
+      .then(() => {
+        console.log("Message sent successfully!");
+        form.reset(); // Clear the form after successful submission
+      })
+      .catch((error) => {
+        console.error("Error sending message:", error);
+        // Optional error handling (e.g., display an error message to the user)
+      });
+    }
+  </script>
+
+</body>
+
+</html>
