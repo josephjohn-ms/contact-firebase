@@ -5,9 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us</title>
   <style>
-    /* Your desired CSS styling for the contact form (optional) */
-  </style>
+    body {
+      background-color: #f0f9ff; /* Light blue background */
+      font-family: Arial, sans-serif; /* Default font */
+    }
 
+    .container {
+      background-color: rgba(255, 255, 255, 0.8); /* White semi-transparent background */
+      border-radius: 10px; /* Rounded corners */
+      padding: 20px; /* Inner padding */
+      margin: 50px auto; /* Center the form */
+      width: 400px; /* Set form width */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for a popup effect */
+      animation: pop-up 0.5s ease-in-out; /* Animation for popup effect */
+    }
+
+    @keyframes pop-up {
+      from {
+        transform: scale(0.9); /* Scale up from 90% */
+        opacity: 0; /* Start invisible */
+      }
+      to {
+        transform: scale(1); /* Scale up to 100% */
+        opacity: 1; /* Become fully visible */
+      }
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box; /* Include padding in width calculation */
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      height: 100px; /* Set textarea height */
+    }
+
+    button[type="submit"] {
+      background-color: #3399ff; /* Light blue button background */
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Animated cloud background */
+    .container:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("cloud.gif"); /* Replace "cloud.gif" with your animated cloud image URL */
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      animation: cloud-move 10s linear infinite; /* Animate cloud movement */
+    }
+
+    @keyframes cloud-move {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 100% 0;
+      }
+    }
+  </style>
 </head>
 <body>
 
