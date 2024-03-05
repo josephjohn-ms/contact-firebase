@@ -7,14 +7,13 @@
   <style>
     /* Your desired CSS styling for the contact form (optional) */
   </style>
-  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js"></script>
+
 </head>
 <body>
 
   <div class="container">
     <h1>Contact Us</h1>
-    <form id="contactForm">
+    <form id="contactForm" onsubmit="sendEmail()">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" placeholder="Your name.." required>
 
@@ -28,55 +27,24 @@
     </form>
   </div>
 
+<script src="https://smtpjs.com/v3/smtp.js">
   <script>
-    // Replace these placeholders with your actual Firebase app configuration
-    const firebaseConfig = {
-  apiKey: "AIzaSyDsgOHNDYKgI5NuAqPw7EwYYQFwMh5xdNI",
-  authDomain: "contact-test-2-cbd58.firebaseapp.com",
-  projectId: "contact-test-2-cbd58",
-  storageBucket: "contact-test-2-cbd58.appspot.com",
-  messagingSenderId: "351111727463",
-  appId: "1:351111727463:web:c18cf03cb4c4b6b18fc7c2"
-};
-  // Your web app's Firebase configuration
-
-    // Initialize Firebase
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    // Get a reference to your Realtime Database
-    const database = firebase.database();
-
-    // Event listener for form submission
-    const contactForm = document.getElementById("contactForm");
-    contactForm.addEventListener("submit", (event) => {
-      event.preventDefault(); // Prevent default form submission
-
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("message").value;
-
-      // Send data to Firebase Realtime Database
-      saveMessagesToDatabase(name, email, message);
-    });
-
-    // Function to save form data to Firebase Realtime Database
-    function saveMessagesToDatabase(name, email, message) {
-      database.ref("messages").push({
-        name: name,
-        email: email,
-        message: message
-      })
-      .then(() => {
-        console.log("Message sent successfully!");
-        contactForm.reset(); // Clear the form after successful submission
-        // Optional: Display a success message to the user
-      })
-      .catch((error) => {
-        console.error("Error sending message:", error);
-        // Optional: Display an error message to the user
-      });
-    }
+    
+     function sendEmail(){
+       Email.send({
+            SecureToken : "C973D7AD-F097-4B95-91F4-40ABC5567812",
+            To : 'josephjohnms@gmail.com',
+            From : document.getElementById("name").value,
+            Subject : "SMTP Contact form",
+            Body : "Name: " + document.getElementById("name").value
+        	+  "<br> Email: " + document.getElementById("email").value
+        	+  "<br> Message: " + document.getElementById("message").value
+        	
+            }).then(
+              message => alert("Message sent succesfully")
+            );
+        
+     
   </script>
 
 </body>
