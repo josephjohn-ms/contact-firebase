@@ -13,7 +13,8 @@
 
   <div class="container">
     <h1>Contact Us</h1>
-    <form onsubmit="sendEmail(); reset(); return false">
+    <form form action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="e58274ae-8944-45fd-a4f0-998b2184c316">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" placeholder="Your name.." required>
 
@@ -27,25 +28,6 @@
     </form>
   </div>
 
-<script src="https://smtpjs.com/v3/smtp.js">
-  <script>
-    
-     function sendEmail(){
-       Email.send({
-            SecureToken : "C973D7AD-F097-4B95-91F4-40ABC5567812",
-            To : 'josephjohnms@gmail.com',
-            From : document.getElementById("name").value,
-            Subject : "SMTP Contact form",
-            Body : "Name: " + document.getElementById("name").value
-        	+  "<br> Email: " + document.getElementById("email").value
-        	+  "<br> Message: " + document.getElementById("message").value
-        	
-            }).then(
-              message => alert("Message sent succesfully")
-            );
-        
-     
-  </script>
 
 </body>
 </html>
