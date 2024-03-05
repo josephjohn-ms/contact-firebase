@@ -13,7 +13,7 @@
 
   <div class="container">
     <h1>Contact Us</h1>
-    <form id="contactForm" onsubmit="sendEmail()">
+    <form onsubmit="sendEmail(); reset(); return false">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" placeholder="Your name.." required>
 
